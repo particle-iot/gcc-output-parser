@@ -1,0 +1,6 @@
+HolidayButton.cpp:4:37: fatal error: SparkButton/SparkButton.h: No such file or directory
+ void onCheer(const char *topic, const char *data);
+                                     ^
+compilation terminated.
+make[1]: *** [../build/target/user/platform-6HolidayButton.o] Error 1
+make: *** [user] Error 2

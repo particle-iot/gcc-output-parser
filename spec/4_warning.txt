@@ -1,0 +1,20 @@
+Blink.cpp:2:5: error: 'uint32_t' does not name a type
+     uint32_t incoming[FRAME_TYPE_MAX];
+     ^
+Blink.cpp:3:5: error: 'uint32_t' does not name a type
+     uint32_t outgoing[FRAME_TYPE_MAX];
+     ^
+Blink.cpp:4:5: error: 'uint32_t' does not name a type
+     uint32_t timeouts;
+     ^
+Blink.cpp:5:5: error: 'uint32_t' does not name a type
+     uint32_t crc_errors;
+     ^
+Blink.cpp:8:24: error: too many initializers for 'pkt_t'
+ static pkt_t stats = {0};
+                        ^
+Blink.cpp:8:14: warning: 'stats' defined but not used [-Wunused-variable]
+ static pkt_t stats = {0};
+              ^
+make[1]: *** [../build/target/user/platform-6Blink.o] Error 1
+make: *** [user] Error 2

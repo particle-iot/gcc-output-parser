@@ -1,0 +1,13 @@
+{
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "quotmark": "single",
+  "maxdepth": 3,
+  "maxstatements": 30,
+  "eqnull": true,
+  "funcscope": false,
+  "node": true,
+	"globalstrict": true
+}

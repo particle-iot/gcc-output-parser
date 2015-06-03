@@ -1,0 +1,19 @@
+Blink.cpp:6:1: error: expected unqualified-id before numeric constant
+ 3 = 4;
+ ^
+Blink.cpp: In function 'void setup()':
+Blink.cpp:13:16: error: 'OUTPUTz' was not declared in this scope
+   pinMode(led, OUTPUTz);
+                ^
+Blink.cpp: In function 'void loop()':
+Blink.cpp:23:21: error: 'HIGHz' was not declared in this scope
+   digitalWrite(led, HIGHz);   // Turn ON the LED pins
+                     ^
+Blink.cpp:26:21: error: 'LOWz' was not declared in this scope
+   digitalWrite(led, LOWz);    // Turn OFF the LED pins
+                     ^
+Blink.cpp:28:14: error: expected '}' at end of input
+   delay(1000);  
+              ^
+make[1]: *** [../build/target/user/platform-6Blink.o] Error 1
+make: *** [user] Error 2

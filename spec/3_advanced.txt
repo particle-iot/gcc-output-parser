@@ -1,0 +1,14 @@
+In file included from ../wiring/inc/spark_wiring.h:28:0,
+                 from ./inc/application.h:29,
+                 from Blink.cpp:1:
+../hal/inc/pinmap_hal.h:85:12: error: expected unqualified-id before numeric constant
+ #define D7 7
+            ^
+Blink.cpp:5:1: note: in expansion of macro 'D7'
+ D7 = 1;
+ ^
+Blink.cpp:6:1: error: 'foo' does not name a type
+ foo
+ ^
+make[1]: *** [../build/target/user/platform-6Blink.o] Error 1
+make: *** [user] Error 2

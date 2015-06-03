@@ -1,0 +1,28 @@
+{
+  "name": "gcc-output-parser",
+  "version": "0.0.1",
+  "description": "gcc output parsing library",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "mocha -R nyan spec/*.spec.js",
+    "lint": "eslint lib/; true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spark/gcc-output-parser.git"
+  },
+  "keywords": [
+    "gcc",
+    "parsing"
+  ],
+  "author": "Wojtek @suda Siudzinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spark/gcc-output-parser/issues"
+  },
+  "homepage": "https://github.com/spark/gcc-output-parser#readme",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  }
+}

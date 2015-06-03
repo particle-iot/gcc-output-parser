@@ -1,0 +1,22 @@
+SparkButton/SparkButton.cpp: In member function 'void ADXL362::setRange(uint8_t)':
+SparkButton/SparkButton.cpp:437:15: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+   temp = temp & 0b00111111 | Range;
+               ^
+SparkButton/SparkButton.cpp: In member function 'void ADXL362::setBandwidth(uint8_t)':
+SparkButton/SparkButton.cpp:457:15: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+   temp = temp & 0b11101111 | BandWidth;
+               ^
+SparkButton/SparkButton.cpp: In member function 'void ADXL362::setOutputDatarate(uint8_t)':
+SparkButton/SparkButton.cpp:477:15: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+   temp = temp & 0b11111000 | ODR;
+               ^
+SparkButton/SparkButton.cpp: In member function 'void ADXL362::setNoiseLevel(uint8_t)':
+SparkButton/SparkButton.cpp:497:15: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+   temp = temp & 0b11001111  | NoiseLevel;
+               ^
+SparkButton/SparkButton.cpp: In member function 'void Adafruit_NeoPixel::show()':
+SparkButton/SparkButton.cpp:656:9: error: 'PIN_MAP' was not declared in this scope
+         PIN_MAP[pin].gpio_peripheral->BSRR = PIN_MAP[pin].gpio_pin; // HIGH
+         ^
+make[1]: *** [../build/target/user/platform-6-lto/SparkButton/SparkButton.o] Error 1
+make: *** [user] Error 2
