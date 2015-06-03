@@ -25,7 +25,7 @@ example output:
     line: 4,
     column: 37,
     type: 'fatal error',
-    text: 'SparkButton/SparkButton.h: No such file or directory',
+    text: 'ParticleButton/ParticleButton.h: No such file or directory',
     codeWhitespace: ' ',
     code: 'void onCheer(const char *topic, const char *data);',
     adjustedColumn: 36 } ]
