@@ -18,6 +18,8 @@ describe('parsing simple errors', function(){
 		output[0].text.should.equal('SparkButton/SparkButton.h: No such file or directory');
 		output[0].code.should.equal('void onCheer(const char *topic, const char *data);');
 		output[0].adjustedColumn.should.equal(36);
+		output[0].startIndex.should.equal(0);
+		output[0].endIndex.should.equal(180);
 	});
 });
 
@@ -33,6 +35,8 @@ describe('parsing multiple errors', function(){
 		for (i=0; i<5; i++) {
 			output[i].filename.should.equal('Blink.cpp');
 		}
+		output[1].startIndex.should.equal(120);
+		output[1].endIndex.should.equal(228);
 	});
 });
 
