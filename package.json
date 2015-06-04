@@ -5,7 +5,11 @@
   "main": "lib/main.js",
   "scripts": {
     "test": "mocha -R nyan spec/*.spec.js",
-    "lint": "eslint lib/; true"
+    "lint": "eslint lib/; true",
+    "clean": "rm -rf dist && mkdir dist",
+    "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
+    "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
+    "build": "npm run clean && npm run browserify && npm run uglify"
   },
   "repository": {
     "type": "git",
@@ -22,7 +26,9 @@
   },
   "homepage": "https://github.com/spark/gcc-output-parser#readme",
   "devDependencies": {
+    "browserify": "^10.2.3",
     "mocha": "^2.2.5",
-    "should": "^6.0.3"
+    "should": "^6.0.3",
+    "uglify-js": "^2.4.23"
   }
 }
