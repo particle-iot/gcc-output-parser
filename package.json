@@ -9,7 +9,8 @@
     "clean": "rm -rf dist && mkdir dist",
     "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
     "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
-    "build": "npm run clean && npm run browserify && npm run uglify"
+    "build": "npm run clean && npm run browserify && npm run uglify",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec spec/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
   "homepage": "https://github.com/spark/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^10.2.3",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
     "mocha": "^2.2.5",
     "should": "^6.0.3",
     "uglify-js": "^2.4.23"
