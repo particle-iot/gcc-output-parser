@@ -1,0 +1,40 @@
+/workspace/savedata.cpp:47:17: warning: 'char_array_4[1]' is used uninitialized in this function [-Wuninitialized]
+/workspace/savedata.cpp:47:17: warning: 'char_array_4[2]' is used uninitialized in this function [-Wuninitialized]
+/workspace/savedata.cpp:47:17: warning: 'char_array_4[3]' is used uninitialized in this function [-Wuninitialized]
+../../../build/target/user/platform-6-m/libuser.a(dispatcher.o): In function `Dispatcher::setLog(Logger*)':
+/workspace/dispatcher.cpp:27: undefined reference to `vtable for Logger'
+../../../build/target/user/platform-6-m/libuser.a(logbase.o): In function `Logbase::setLog(Logger*)':
+/workspace/logbase.cpp:8: undefined reference to `vtable for Logger'
+../../../build/target/user/platform-6-m/libuser.a(logger.o): In function `Logger::Logger()':
+/workspace/logger.cpp:8: undefined reference to `vtable for Logger'
+adafruit-gfx.o (symbol from plugin): In function `Adafruit_GFX::height() const':
+(.text+0x0): multiple definition of `Adafruit_GFX::setTextWrap(bool)'
+Adafruit_GFX.o (symbol from plugin):(.text+0x0): first defined here
+adafruit-gfx.o (symbol from plugin): In function `Adafruit_GFX::height() const':
+(.text+0x0): multiple definition of `Adafruit_GFX::setRotation(unsigned char)'
+Adafruit_GFX.o (symbol from plugin):(.text+0x0): first defined here
+../../../build/target/user/platform-88/libuser.a(SparkIntervalTimer.o): In function `IntervalTimer::isAllocated_SIT()':
+SparkIntervalTimer/SparkIntervalTimer.cpp:66: multiple definition of `IntervalTimer::SIT_CALLBACK'
+../../../build/target/user/platform-88/libuser.a(SparkIntervalTimer.o):SparkIntervalTimer.cpp:61: first defined here
+../../../build/target/user/platform-88/libuser.a(SparkIntervalTimer.o): In function `IntervalTimer::isAllocated_SIT()':
+SparkIntervalTimer/SparkIntervalTimer.cpp:66: multiple definition of `IntervalTimer::SIT_used'
+../../../build/target/user/platform-88/libuser.a(SparkIntervalTimer.o):SparkIntervalTimer.cpp:61: first defined here
+SparkIntervalTimer/SparkIntervalTimer.cpp:200: undefined reference to `NVIC_Init'
+../../../build/target/user/platform-6/libuser.a(SparkIntervalTimer.o): In function `IntervalTimer::stop_SIT()':
+SparkIntervalTimer/SparkIntervalTimer.cpp:240: undefined reference to `TIM_Cmd'
+SparkIntervalTimer/SparkIntervalTimer.cpp:244: undefined reference to `NVIC_Init'
+SparkIntervalTimer/SparkIntervalTimer.cpp:247: undefined reference to `TIM_DeInit'
+../../../build/target/user/platform-6/libuser.a(SparkIntervalTimer.o): In function `IntervalTimer::resetPeriod_SIT(unsigned short, bool)':
+SparkIntervalTimer/SparkIntervalTimer.cpp:338: undefined reference to `TIM_ClearITPendingBit'
+../../../build/target/user/platform-6/libuser.a(NexHardware.o): In function `sendCommand(char const*)':
+lib/ITEADLIB_Nextion/src/NexHardware.cpp:189: undefined reference to `nexSerial'
+../../../build/target/user/platform-6/libuser.a(NexHardware.o): In function `recvRetCommandFinished(unsigned long)':
+lib/ITEADLIB_Nextion/src/NexHardware.cpp:260: undefined reference to `nexSerial'
+../../../build/target/user/platform-6/libuser.a(Particle-OneWire.o): In function `OneWire::crc16(unsigned char const*, unsigned short, unsigned short)':
+Particle-OneWire/Particle-OneWire.cpp:518: multiple definition of `OneWire::crc16(unsigned char const*, unsigned short, unsigned short)'
+../../../build/target/user/platform-6/libuser.a(Particle-OneWire.o):DS18B20/Particle-OneWire.cpp:394: first defined here
+../../../build/target/user/platform-6/libuser.a(Particle-OneWire.o): In function `OneWire::check_crc16(unsigned char const*, unsigned short, unsigned char const*, unsigned short)':
+Particle-OneWire/Particle-OneWire.cpp:512: multiple definition of `OneWire::check_crc16(unsigned char const*, unsigned short, unsigned char const*, unsigned short)'
+../../../build/target/user/platform-6/libuser.a(Particle-OneWire.o):DS18B20/Particle-OneWire.cpp:388: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [/workspace/a940dc7fb615eb3fd777aba10a736537e1ba5bc2dd67aab403260a4997d2.elf] Error 1
