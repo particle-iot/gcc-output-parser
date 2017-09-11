@@ -63,20 +63,43 @@ describe('parsing linker errors', function(){
 	});
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
+		i = 3;
+		output.length.should.equal(17);
+		output[i].type.should.equal('error');
+		output[i].subtype.should.equal('undefined reference');
+		output[i].filename.should.equal('/workspace/dispatcher.cpp');
+		output[i].line.should.equal(27);
+		output[i].column.should.equal(0);
+		output[i].text.should.equal('undefined reference to "vtable for Logger"');
+		output[i].affectedSymbol.should.equal('vtable for Logger');
+		output[i].parentFunction.should.equal('Dispatcher::setLog(Logger*)');
 
-		output.length.should.equal(14);
-		output[0].type.should.equal('error');
-		output[0].subtype.should.equal('undefined reference');
-		output[0].filename.should.equal('/workspace/dispatcher.cpp');
-		output[0].line.should.equal(27);
-		output[0].column.should.equal(0);
-		output[0].text.should.equal('undefined reference to "vtable for Logger"');
-		output[0].affectedSymbol.should.equal('vtable for Logger');
-		output[0].parentFunction.should.equal('Dispatcher::setLog(Logger*)');
+		i += 3;
+		output[i].subtype.should.equal('multiple definition');
+		output[i].parentFunction.should.equal('IntervalTimer::isAllocated_SIT()');
+		output[i].firstDefined.filename.should.equal('SparkIntervalTimer.cpp');
+		output[i].firstDefined.line.should.equal(61);
+	});
+});
 
-		output[3].subtype.should.equal('multiple definition');
-		output[3].parentFunction.should.equal('IntervalTimer::isAllocated_SIT()');
-		output[3].firstDefined.filename.should.equal('SparkIntervalTimer.cpp');
-		output[3].firstDefined.line.should.equal(61);
+describe('parsing 0.6.0 errors', function(){
+	var stdout = null;
+	before(function(){
+		stdout = fs.readFileSync(__dirname + '/8_dray_0.6.0.txt');
+	});
+	it('should return an object', function(){
+		var output = parser.parseString(stdout);
+
+		output.length.should.equal(7);
+		output[5].type.should.equal('error');
+		output[5].filename.should.equal('emptyerror.ino');
+		output[5].line.should.equal(23);
+		output[5].column.should.equal(34);
+		output[5].text.should.equal('\'count\' was not declared in this scope');
+		output[6].type.should.equal('error');
+		output[6].filename.should.equal('emptyerror.ino');
+		output[6].line.should.equal(27);
+		output[6].column.should.equal(5);
+		output[6].text.should.equal('\'count\' was not declared in this scope');
 	});
 });
