@@ -9,8 +9,8 @@ Message.prototype.fromGcc = function fromGcc(components, stdout) {
 	this.column = parseInt(components[3]);
 	this.type = components[4];
 	this.text = components[5];
-	this.codeWhitespace = components[6];
-	this.code = components[7];
+	this.codeWhitespace = components[6] ? components[6] : '';
+	this.code = components[7] ? components[7] : '';
 
 	this.adjustedColumn = this.column - this.codeWhitespace.length;
 	this.startIndex = stdout.indexOf(components[0]);
@@ -90,7 +90,10 @@ module.exports = {
 	},
 
 	parseGcc: function parseGcc(stdout) {
-		var regex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)(.*)\s+\^+/gm;
+		var messages = [];
+		var match = null;
+
+		var deepRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)(.*)\s+\^+/gm;
 		//            ^          ^     ^       ^       ^     ^    ^
 		//            |          |     |       |       |     |    +- affected code
 		//            |          |     |       |       |     +- whitespace before code
@@ -99,10 +102,21 @@ module.exports = {
 		//            |          |     +- column
 		//            |          +- line
 		//            +- filename
+		while (match = deepRegex.exec(stdout)) {
+			messages.push(new Message().fromGcc(match, stdout));
+		}
 
-		var messages = [];
-		var match = null;
-		while (match = regex.exec(stdout)) {
+		var simpleRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(?!\s)/gm;
+		//            ^          ^     ^       ^       ^     ^    ^
+		//            |          |     |       |       |     |    +- affected code
+		//            |          |     |       |       |     +- whitespace before code
+		//            |          |     |       |       +- message text
+		//            |          |     |       +- type (error|warning|note)
+		//            |          |     +- column
+		//            |          +- line
+		//            +- filename
+		match = null;
+		while (match = simpleRegex.exec(stdout)) {
 			messages.push(new Message().fromGcc(match, stdout));
 		}
 
