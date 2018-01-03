@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spark/gcc-output-parser.git"
+    "url": "git+https://github.com/particle-iot/gcc-output-parser.git"
   },
   "keywords": [
     "gcc",
@@ -23,9 +23,9 @@
   "author": "Wojtek @suda Siudzinski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spark/gcc-output-parser/issues"
+    "url": "https://github.com/particle-iot/gcc-output-parser/issues"
   },
-  "homepage": "https://github.com/spark/gcc-output-parser#readme",
+  "homepage": "https://github.com/particle-iot/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^10.2.3",
     "coveralls": "^2.11.4",
