@@ -3,6 +3,7 @@
   "version": "0.0.4",
   "description": "gcc output parsing library",
   "main": "lib/main.js",
+  "types": "lib/main.d.ts",
   "scripts": {
     "test": "mocha -R nyan spec/*.spec.js",
     "lint": "eslint lib/; true",
