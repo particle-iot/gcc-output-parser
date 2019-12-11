@@ -7,13 +7,13 @@ Library which helps annotate/highlight `gcc` output.
 ## Installation
 
 ```shell
-$ npm install gcc-output-parser
+$ npm install @wokwi/gcc-output-parser
 ```
 
 ## Usage
 
 ```javascript
-var parser = require('gcc-output-parser');
+var parser = require('@wokwi/gcc-output-parser');
 
 console.log(parser.parseString(gccOutput));
 ```
@@ -21,12 +21,16 @@ console.log(parser.parseString(gccOutput));
 example output:
 
 ```javascript
-[ { filename: 'HolidayButton.cpp',
-    line: 4,
-    column: 37,
-    type: 'fatal error',
-    text: 'ParticleButton/ParticleButton.h: No such file or directory',
-    codeWhitespace: ' ',
-    code: 'void onCheer(const char *topic, const char *data);',
-    adjustedColumn: 36 } ]
+[ { filename: '/sketch/sketch.ino',
+    line: 6,
+    column: 3,
+    type: 'error',
+    text: "'digitalWire' was not declared in this scope",
+    codeWhitespace: '   ',
+    code: 'digitalWire(LED_BUILTIN, HIGH);',
+    adjustedColumn: 0,
+    startIndex: 47,
+    endIndex: 162,
+    parentFunction: 'void loop()'
+} ]
 ```
