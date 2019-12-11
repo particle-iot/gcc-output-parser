@@ -9,6 +9,7 @@
     "lint": "eslint lib/",
     "clean": "rm -rf dist && mkdir dist",
     "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
+    "format": "prettier --write lib/**/*.{js,ts} spec/**/*.js",
     "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
     "build": "npm run clean && npm run browserify && npm run uglify"
   },
@@ -28,11 +29,12 @@
   "homepage": "https://github.com/wokwi/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^16.5.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "mocha": "^6.2.2",
+    "prettier": "^1.19.1",
     "should": "^13.2.3",
     "uglify-js": "^3.7.2"
-  },
-  "dependencies": {
-    "eslint": "^6.7.2"
   }
 }
