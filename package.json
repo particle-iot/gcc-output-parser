@@ -5,13 +5,12 @@
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
   "scripts": {
-    "test": "mocha -R nyan spec/*.spec.js",
-    "lint": "eslint lib/; true",
+    "test": "mocha -R nyan spec/*.spec.js && npm run lint",
+    "lint": "eslint lib/",
     "clean": "rm -rf dist && mkdir dist",
     "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
     "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
-    "build": "npm run clean && npm run browserify && npm run uglify",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec spec/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "build": "npm run clean && npm run browserify && npm run uglify"
   },
   "repository": {
     "type": "git",
@@ -28,11 +27,12 @@
   },
   "homepage": "https://github.com/wokwi/gcc-output-parser#readme",
   "devDependencies": {
-    "browserify": "^10.2.3",
-    "coveralls": "^2.11.4",
-    "istanbul": "^0.4.0",
-    "mocha": "^2.2.5",
-    "should": "^6.0.3",
-    "uglify-js": "^2.4.23"
+    "browserify": "^16.5.0",
+    "mocha": "^6.2.2",
+    "should": "^13.2.3",
+    "uglify-js": "^3.7.2"
+  },
+  "dependencies": {
+    "eslint": "^6.7.2"
   }
 }
