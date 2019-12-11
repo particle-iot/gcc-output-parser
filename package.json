@@ -9,6 +9,9 @@
     "lint": "eslint lib/",
     "format": "prettier --write lib/**/*.{js,ts} spec/**/*.js"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wokwi/gcc-output-parser"
