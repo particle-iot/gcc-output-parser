@@ -5,7 +5,7 @@ var parser = require('../lib/main.js');
 describe('parsing simple errors', function(){
 	var stdout = null;
 	before(function(){
-		stdout = fs.readFileSync(__dirname + '/1_simple.txt');
+		stdout = fs.readFileSync(__dirname + '/1_simple.txt', { encoding: 'utf-8' }).replace(/\r\n/g, '\n');
 	});
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
@@ -26,7 +26,7 @@ describe('parsing simple errors', function(){
 describe('parsing multiple errors', function(){
 	var stdout = null;
 	before(function(){
-		stdout = fs.readFileSync(__dirname + '/2_multiple.txt');
+		stdout = fs.readFileSync(__dirname + '/2_multiple.txt', { encoding: 'utf-8' }).replace(/\r\n/g, '\n');
 	});
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
@@ -101,5 +101,26 @@ describe('parsing 0.6.0 errors', function(){
 		output[6].line.should.equal(27);
 		output[6].column.should.equal(5);
 		output[6].text.should.equal('\'count\' was not declared in this scope');
+	});
+});
+
+describe('parsing with CRLF (window)', function(){
+	var stdout = null;
+	before(function(){
+		stdout = fs.readFileSync(__dirname + '/1_simple.txt', { encoding: 'utf-8' }).replace(/\r?\n/g, '\r\n');
+	});
+	it('should return an object', function(){
+		var output = parser.parseString(stdout);
+
+		output.length.should.equal(1);
+		output[0].filename.should.equal('HolidayButton.cpp');
+		output[0].line.should.equal(4);
+		output[0].column.should.equal(37);
+		output[0].type.should.equal('fatal error');
+		output[0].text.should.equal('SparkButton/SparkButton.h: No such file or directory');
+		output[0].code.should.equal('void onCheer(const char *topic, const char *data);');
+		output[0].adjustedColumn.should.equal(36);
+		output[0].startIndex.should.equal(0);
+		output[0].endIndex.should.equal(182);
 	});
 });
