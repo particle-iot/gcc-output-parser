@@ -1,6 +1,6 @@
 {
-  "name": "gcc-output-parser",
-  "version": "0.0.4",
+  "name": "@wokwi/gcc-output-parser",
+  "version": "0.1.0",
   "description": "gcc output parsing library",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spark/gcc-output-parser.git"
+    "url": "https://github.com/wokwi/gcc-output-parser"
   },
   "keywords": [
     "gcc",
@@ -24,9 +24,9 @@
   "author": "Wojtek @suda Siudzinski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spark/gcc-output-parser/issues"
+    "url": "https://github.com/wokwi/gcc-output-parser/issues"
   },
-  "homepage": "https://github.com/spark/gcc-output-parser#readme",
+  "homepage": "https://github.com/wokwi/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^10.2.3",
     "coveralls": "^2.11.4",
