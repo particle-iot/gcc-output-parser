@@ -1,0 +1,48 @@
+201204_fc_recv_1.ino:561:9: warning: "/*" within comment [-Wcomment]
+  561 |         /*
+      |          
+201204_fc_recv_1.ino:64:25: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   64 |     char *rStates[] = { "NO Run State", "SYNC", "RUN" } ;
+      |                         ^~~~~~~~~~~~~~
+201204_fc_recv_1.ino:64:41: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   64 |     char *rStates[] = { "NO Run State", "SYNC", "RUN" } ;
+      |                                         ^~~~~~
+201204_fc_recv_1.ino:64:49: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   64 |     char *rStates[] = { "NO Run State", "SYNC", "RUN" } ;
+      |                                                 ^~~~~
+201204_fc_recv_1.ino:65:25: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   65 |     char *rSyncs[]  = { "No Sync State","LOOKing for SYNC"  };
+      |                         ^~~~~~~~~~~~~~~
+201204_fc_recv_1.ino:65:41: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   65 |     char *rSyncs[]  = { "No Sync State","LOOKing for SYNC"  };
+      |                                         ^~~~~~~~~~~~~~~~~~
+201204_fc_recv_1.ino:76:23: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                       ^~~~~~~
+201204_fc_recv_1.ino:76:31: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                               ^~~~~~~
+201204_fc_recv_1.ino:76:39: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                                       ^~~~~~~
+201204_fc_recv_1.ino:76:47: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                                               ^~~~~~~
+201204_fc_recv_1.ino:76:55: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                                                       ^~~~~
+201204_fc_recv_1.ino:76:61: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   76 | char *workNames[] = { "1-On ","1-Off","2-On ","2-Off","PAF","  nc " };
+      |                                                             ^~~~~~~
+201204_fc_recv_1.ino:583:5: error: expected declaration before '}' token
+  583 |     }
+      |     ^
+201204_fc_recv_1.ino: In function 'void announce()':
+201204_fc_recv_1.ino:639:9: warning: unused variable 'averagePulseTime' [-Wunused-variable]
+  639 |     int averagePulseTime;
+      |         ^~~~~~~~~~~~~~~~
+201204_fc_recv_1.ino:640:9: warning: unused variable 'averageNonPulseTime' [-Wunused-variable]
+  640 |     int averageNonPulseTime;
+      |         ^~~~~~~~~~~~~~~~~~~
+../build/module.mk:274: recipe for target '../build/target/user/platform-6-m201204_fc_recv_1.o' failed
+make[2]: *** [../build/target/user/platform-6-m201204_fc_recv_1.o] Error 1
