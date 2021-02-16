@@ -93,28 +93,29 @@ module.exports = {
 		var messages = [];
 		var match = null;
 
-		var deepRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)(.*)\s+\^+/gm;
-		//            ^          ^     ^       ^       ^     ^    ^
-		//            |          |     |       |       |     |    +- affected code
-		//            |          |     |       |       |     +- whitespace before code
-		//            |          |     |       |       +- message text
-		//            |          |     |       +- type (error|warning|note)
-		//            |          |     +- column
-		//            |          +- line
-		//            +- filename
+		var deepRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)\d*\s*[|]*\s*(.*)\s+[|]*\s*\^+/gm;
+		//               ^          ^     ^       ^             ^     ^    ^               ^
+		//               |          |     |       |             |     |    |               +- affected code
+		//               |          |     |       |             |     |    +- optional gcc 9.2 markup
+		//               |          |     |       |             |     +- whitespace before code
+		//               |          |     |       |             +- message text
+		//               |          |     |       +- type (error|warning|note)
+		//               |          |     +- column
+		//               |          +- line
+		//               +- filename
 		while (match = deepRegex.exec(stdout)) {
 			messages.push(new Message().fromGcc(match, stdout));
 		}
 
 		var simpleRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(?!\s)/gm;
-		//            ^          ^     ^       ^       ^     ^    ^
-		//            |          |     |       |       |     |    +- affected code
-		//            |          |     |       |       |     +- whitespace before code
-		//            |          |     |       |       +- message text
-		//            |          |     |       +- type (error|warning|note)
-		//            |          |     +- column
-		//            |          +- line
-		//            +- filename
+		//                 ^          ^     ^       ^             ^     ^
+		//                 |          |     |       |             |     |
+		//                 |          |     |       |             |     +- whitespace before code
+		//                 |          |     |       |             +- message text
+		//                 |          |     |       +- type (error|warning|note)
+		//                 |          |     +- column
+		//                 |          +- line
+		//                 +- filename
 		match = null;
 		while (match = simpleRegex.exec(stdout)) {
 			messages.push(new Message().fromGcc(match, stdout));
