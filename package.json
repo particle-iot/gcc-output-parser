@@ -28,10 +28,10 @@
   "homepage": "https://github.com/spark/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^10.2.3",
+    "chai": "^4.3.0",
     "coveralls": "^2.11.4",
     "istanbul": "^0.4.0",
     "mocha": "^2.2.5",
-    "should": "^6.0.3",
     "uglify-js": "^2.4.23"
   }
 }

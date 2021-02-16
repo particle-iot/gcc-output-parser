@@ -1,6 +1,6 @@
-var fs = require('fs');
-var should = require('should');
-var parser = require('../lib/main.js');
+const fs = require('fs');
+const { expect } = require('chai')
+const parser = require('../lib/main');
 
 describe('parsing simple errors', function(){
 	var stdout = null;
@@ -10,16 +10,16 @@ describe('parsing simple errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 
-		output.length.should.equal(1);
-		output[0].filename.should.equal('HolidayButton.cpp');
-		output[0].line.should.equal(4);
-		output[0].column.should.equal(37);
-		output[0].type.should.equal('fatal error');
-		output[0].text.should.equal('SparkButton/SparkButton.h: No such file or directory');
-		output[0].code.should.equal('void onCheer(const char *topic, const char *data);');
-		output[0].adjustedColumn.should.equal(36);
-		output[0].startIndex.should.equal(0);
-		output[0].endIndex.should.equal(180);
+		expect(output.length).to.equal(1);
+		expect(output[0].filename).to.equal('HolidayButton.cpp');
+		expect(output[0].line).to.equal(4);
+		expect(output[0].column).to.equal(37);
+		expect(output[0].type).to.equal('fatal error');
+		expect(output[0].text).to.equal('SparkButton/SparkButton.h: No such file or directory');
+		expect(output[0].code).to.equal('void onCheer(const char *topic, const char *data);');
+		expect(output[0].adjustedColumn).to.equal(36);
+		expect(output[0].startIndex).to.equal(0);
+		expect(output[0].endIndex).to.equal(180);
 	});
 });
 
@@ -31,13 +31,13 @@ describe('parsing multiple errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 
-		output.length.should.equal(5);
+		expect(output.length).to.equal(5);
 		for (i=0; i<5; i++) {
-			output[i].filename.should.equal('Blink.cpp');
+			expect(output[i].filename).to.equal('Blink.cpp');
 		}
-		output[1].parentFunction.should.equal('void setup()');
-		output[1].startIndex.should.equal(120);
-		output[1].endIndex.should.equal(228);
+		expect(output[1].parentFunction).to.equal('void setup()');
+		expect(output[1].startIndex).to.equal(120);
+		expect(output[1].endIndex).to.equal(228);
 	});
 });
 
@@ -49,10 +49,10 @@ describe('parsing advanced errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 		// TODO: Parse inclusion stack
-		output.length.should.equal(3);
-		output[0].type.should.equal('error');
-		output[1].type.should.equal('note');
-		output[2].type.should.equal('error');
+		expect(output.length).to.equal(3);
+		expect(output[0].type).to.equal('error');
+		expect(output[1].type).to.equal('note');
+		expect(output[2].type).to.equal('error');
 	});
 });
 
@@ -64,21 +64,21 @@ describe('parsing linker errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 		i = 3;
-		output.length.should.equal(17);
-		output[i].type.should.equal('error');
-		output[i].subtype.should.equal('undefined reference');
-		output[i].filename.should.equal('/workspace/dispatcher.cpp');
-		output[i].line.should.equal(27);
-		output[i].column.should.equal(0);
-		output[i].text.should.equal('undefined reference to "vtable for Logger"');
-		output[i].affectedSymbol.should.equal('vtable for Logger');
-		output[i].parentFunction.should.equal('Dispatcher::setLog(Logger*)');
+		expect(output.length).to.equal(17);
+		expect(output[i].type).to.equal('error');
+		expect(output[i].subtype).to.equal('undefined reference');
+		expect(output[i].filename).to.equal('/workspace/dispatcher.cpp');
+		expect(output[i].line).to.equal(27);
+		expect(output[i].column).to.equal(0);
+		expect(output[i].text).to.equal('undefined reference to "vtable for Logger"');
+		expect(output[i].affectedSymbol).to.equal('vtable for Logger');
+		expect(output[i].parentFunction).to.equal('Dispatcher::setLog(Logger*)');
 
 		i += 3;
-		output[i].subtype.should.equal('multiple definition');
-		output[i].parentFunction.should.equal('IntervalTimer::isAllocated_SIT()');
-		output[i].firstDefined.filename.should.equal('SparkIntervalTimer.cpp');
-		output[i].firstDefined.line.should.equal(61);
+		expect(output[i].subtype).to.equal('multiple definition');
+		expect(output[i].parentFunction).to.equal('IntervalTimer::isAllocated_SIT()');
+		expect(output[i].firstDefined.filename).to.equal('SparkIntervalTimer.cpp');
+		expect(output[i].firstDefined.line).to.equal(61);
 	});
 });
 
@@ -90,17 +90,17 @@ describe('parsing 0.6.0 errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 
-		output.length.should.equal(7);
-		output[5].type.should.equal('error');
-		output[5].filename.should.equal('emptyerror.ino');
-		output[5].line.should.equal(23);
-		output[5].column.should.equal(34);
-		output[5].text.should.equal('\'count\' was not declared in this scope');
-		output[6].type.should.equal('error');
-		output[6].filename.should.equal('emptyerror.ino');
-		output[6].line.should.equal(27);
-		output[6].column.should.equal(5);
-		output[6].text.should.equal('\'count\' was not declared in this scope');
+		expect(output.length).to.equal(7);
+		expect(output[5].type).to.equal('error');
+		expect(output[5].filename).to.equal('emptyerror.ino');
+		expect(output[5].line).to.equal(23);
+		expect(output[5].column).to.equal(34);
+		expect(output[5].text).to.equal('\'count\' was not declared in this scope');
+		expect(output[6].type).to.equal('error');
+		expect(output[6].filename).to.equal('emptyerror.ino');
+		expect(output[6].line).to.equal(27);
+		expect(output[6].column).to.equal(5);
+		expect(output[6].text).to.equal('\'count\' was not declared in this scope');
 	});
 });
 
@@ -112,11 +112,11 @@ describe('parsing gcc 9.2 errors', function(){
 	it('should return an object', function(){
 		var output = parser.parseString(stdout);
 
-		output.length.should.equal(14);
-		output[11].type.should.equal('error');
-		output[11].filename.should.equal('201204_fc_recv_1.ino');
-		output[11].line.should.equal(583);
-		output[11].column.should.equal(5);
-		output[11].text.should.equal(`expected declaration before '}' token`);
+		expect(output.length).to.equal(14);
+		expect(output[11].type).to.equal('error');
+		expect(output[11].filename).to.equal('201204_fc_recv_1.ino');
+		expect(output[11].line).to.equal(583);
+		expect(output[11].column).to.equal(5);
+		expect(output[11].text).to.equal(`expected declaration before '}' token`);
 	});
 });
