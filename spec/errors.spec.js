@@ -103,3 +103,20 @@ describe('parsing 0.6.0 errors', function(){
 		output[6].text.should.equal('\'count\' was not declared in this scope');
 	});
 });
+
+describe('parsing gcc 9.2 errors', function(){
+	var stdout = null;
+	before(function(){
+		stdout = fs.readFileSync(__dirname + '/9_gcc_9.2.txt');
+	});
+	it('should return an object', function(){
+		var output = parser.parseString(stdout);
+
+		output.length.should.equal(14);
+		output[11].type.should.equal('error');
+		output[11].filename.should.equal('201204_fc_recv_1.ino');
+		output[11].line.should.equal(583);
+		output[11].column.should.equal(5);
+		output[11].text.should.equal(`expected declaration before '}' token`);
+	});
+});
