@@ -4,17 +4,22 @@
   "description": "gcc output parsing library",
   "main": "lib/main.js",
   "scripts": {
-    "test": "mocha -R nyan spec/*.spec.js",
+    "test": "npm run lint && npm run test:unit",
+    "test:ci": "npm run lint && npm run test:unit -- --forbid-only && npm run coverage",
+    "test:unit": "mocha spec/ -R spec",
+    "test:unit:silent": "npm run test:unit > tmp/test-unit-log.txt 2>&1",
+    "test:watch": "npm run test:unit -- --watch",
+    "coverage": "nyc --reporter=text --include='spec/**/*.js' --temp-dir=./tmp/ --check-coverage --lines 50 npm run test:unit:silent",
     "lint": "eslint lib/; true",
     "clean": "rm -rf dist && mkdir dist",
     "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
     "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
     "build": "npm run clean && npm run browserify && npm run uglify",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec spec/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "version": "npm run build && git add dist/*"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spark/gcc-output-parser.git"
+    "url": "git+https://github.com/particle-iot/gcc-output-parser.git"
   },
   "keywords": [
     "gcc",
@@ -23,15 +28,20 @@
   "author": "Wojtek @suda Siudzinski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spark/gcc-output-parser/issues"
+    "url": "https://github.com/particle-iot/gcc-output-parser/issues"
   },
-  "homepage": "https://github.com/spark/gcc-output-parser#readme",
+  "homepage": "https://github.com/particle-iot/gcc-output-parser#readme",
   "devDependencies": {
     "browserify": "^17.0.0",
     "chai": "^4.3.0",
     "coveralls": "^3.1.0",
-    "istanbul": "^0.4.0",
-    "mocha": "^8.3.0",
+    "eslint": "^8.16.0",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
     "uglify-js": "^3.12.8"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": "8.x"
   }
 }
