@@ -10,7 +10,8 @@
     "test:unit:silent": "npm run test:unit > tmp/test-unit-log.txt 2>&1",
     "test:watch": "npm run test:unit -- --watch",
     "coverage": "nyc --reporter=text --include='spec/**/*.js' --temp-dir=./tmp/ --check-coverage --lines 50 npm run test:unit:silent",
-    "lint": "eslint lib/; true",
+    "lint": "eslint . --ext .js --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
     "clean": "rm -rf dist && mkdir dist",
     "browserify": "browserify -s GccOutputParser -o dist/gcc-output-parser.js lib/main.js",
     "uglify": "uglifyjs dist/gcc-output-parser.js > dist/gcc-output-parser.min.js",
@@ -36,6 +37,7 @@
     "chai": "^4.3.0",
     "coveralls": "^3.1.0",
     "eslint": "^8.16.0",
+    "eslint-config-particle": "^2.5.0",
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",
     "uglify-js": "^3.12.8"

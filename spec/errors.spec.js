@@ -1,14 +1,14 @@
 const fs = require('fs');
-const { expect } = require('chai')
+const { expect } = require('chai');
 const parser = require('../lib/main');
 
 describe('parsing simple errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/1_simple.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
+		const output = parser.parseString(stdout);
 
 		expect(output.length).to.equal(1);
 		expect(output[0].filename).to.equal('HolidayButton.cpp');
@@ -24,15 +24,15 @@ describe('parsing simple errors', function(){
 });
 
 describe('parsing multiple errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/2_multiple.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
+		const output = parser.parseString(stdout);
 
 		expect(output.length).to.equal(5);
-		for (i=0; i<5; i++) {
+		for (let i = 0; i < 5; i++) {
 			expect(output[i].filename).to.equal('Blink.cpp');
 		}
 		expect(output[1].parentFunction).to.equal('void setup()');
@@ -42,12 +42,12 @@ describe('parsing multiple errors', function(){
 });
 
 describe('parsing advanced errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/3_advanced.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
+		const output = parser.parseString(stdout);
 		// TODO: Parse inclusion stack
 		expect(output.length).to.equal(3);
 		expect(output[0].type).to.equal('error');
@@ -57,13 +57,13 @@ describe('parsing advanced errors', function(){
 });
 
 describe('parsing linker errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/6_linker.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
-		i = 3;
+		const output = parser.parseString(stdout);
+		let i = 3;
 		expect(output.length).to.equal(17);
 		expect(output[i].type).to.equal('error');
 		expect(output[i].subtype).to.equal('undefined reference');
@@ -83,12 +83,12 @@ describe('parsing linker errors', function(){
 });
 
 describe('parsing 0.6.0 errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/8_dray_0.6.0.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
+		const output = parser.parseString(stdout);
 
 		expect(output.length).to.equal(7);
 		expect(output[5].type).to.equal('error');
@@ -105,12 +105,12 @@ describe('parsing 0.6.0 errors', function(){
 });
 
 describe('parsing gcc 9.2 errors', function(){
-	var stdout = null;
+	let stdout = null;
 	before(function(){
 		stdout = fs.readFileSync(__dirname + '/9_gcc_9.2.txt');
 	});
 	it('should return an object', function(){
-		var output = parser.parseString(stdout);
+		const output = parser.parseString(stdout);
 
 		expect(output.length).to.equal(14);
 		expect(output[11].type).to.equal('error');
