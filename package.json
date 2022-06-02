@@ -1,6 +1,6 @@
 {
   "name": "gcc-output-parser",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "gcc output parsing library",
   "main": "lib/main.js",
   "scripts": {

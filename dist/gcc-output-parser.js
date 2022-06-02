@@ -1,7 +1,7 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.GccOutputParser = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-'use strict';
 
-var Message = function Message() {};
+
+function Message() {}
 
 Message.prototype.fromGcc = function fromGcc(components, stdout) {
 	this.filename = components[1];
@@ -18,7 +18,7 @@ Message.prototype.fromGcc = function fromGcc(components, stdout) {
 	this.parentFunction = this._lookbackFunction(stdout, this.startIndex);
 
 	return this;
-}
+};
 
 Message.prototype.fromLinker = function fromGcc(components, stdout) {
 	this.filename = components[1];
@@ -38,30 +38,32 @@ Message.prototype.fromLinker = function fromGcc(components, stdout) {
 	}
 
 	return this;
-}
+};
 
 Message.prototype._matchAll = function _matchAll(regex, input) {
-	var match = null;
-	var matches = [];
+	let match = null;
+	const matches = [];
+
+	/* eslint-disable-next-line */
 	while (match = regex.exec(input)) {
 		matches.push(match);
 	}
 	return matches;
-}
+};
 
 Message.prototype._lookbackFunction = function _lookbackFunction(stdout, index) {
-	var regex = /In function\s(`|')(.*)'/g;
-	var matches = this._matchAll(regex, stdout.slice(0, index));
+	const regex = /In function\s(`|')(.*)'/g;
+	const matches = this._matchAll(regex, stdout.slice(0, index));
 	if (matches.length) {
 		return matches.slice(-1)[0][2];
 	}
 	return;
-}
+};
 
 Message.prototype._lookupFirstDefinition = function _lookupFirstDefinition(stdout, index) {
-	var regex = /:(.*):(\d+): first defined here/g;
+	const regex = /:(.*):(\d+): first defined here/g;
 
-	var matches = this._matchAll(regex, stdout.slice(index));
+	const matches = this._matchAll(regex, stdout.slice(index));
 	if (matches.length) {
 		return {
 			filename: matches[0][1],
@@ -69,19 +71,19 @@ Message.prototype._lookupFirstDefinition = function _lookupFirstDefinition(stdou
 		};
 	}
 	return;
-}
+};
 
 module.exports = Message;
 
 },{}],2:[function(require,module,exports){
-'use strict';
-var Message = require('./Message');
+
+const Message = require('./Message');
 
 module.exports = {
 	parseString: function parseString(stdout) {
 		stdout = stdout.toString();
 
-		var messages = [].concat(
+		const messages = [].concat(
 			this.parseGcc(stdout),
 			this.parseLinker(stdout)
 		);
@@ -90,10 +92,10 @@ module.exports = {
 	},
 
 	parseGcc: function parseGcc(stdout) {
-		var messages = [];
-		var match = null;
+		const messages = [];
+		let match = null;
 
-		var deepRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)\d*\s*[|]*\s*(.*)\s+[|]*\s*\^+/gm;
+		const deepRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(\s+)\d*\s*[|]*\s*(.*)\s+[|]*\s*\^+/gm;
 		//               ^          ^     ^       ^             ^     ^    ^               ^
 		//               |          |     |       |             |     |    |               +- affected code
 		//               |          |     |       |             |     |    +- optional gcc 9.2 markup
@@ -103,11 +105,12 @@ module.exports = {
 		//               |          |     +- column
 		//               |          +- line
 		//               +- filename
+		/* eslint-disable-next-line */
 		while (match = deepRegex.exec(stdout)) {
 			messages.push(new Message().fromGcc(match, stdout));
 		}
 
-		var simpleRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(?!\s)/gm;
+		const simpleRegex = /([^:^\n]+):(\d+):(\d+):\s(\w+\s*\w*):\s(.+)\n(?!\s)/gm;
 		//                 ^          ^     ^       ^             ^     ^
 		//                 |          |     |       |             |     |
 		//                 |          |     |       |             |     +- whitespace before code
@@ -117,6 +120,7 @@ module.exports = {
 		//                 |          +- line
 		//                 +- filename
 		match = null;
+		/* eslint-disable-next-line */
 		while (match = simpleRegex.exec(stdout)) {
 			messages.push(new Message().fromGcc(match, stdout));
 		}
@@ -125,10 +129,11 @@ module.exports = {
 	},
 
 	parseLinker: function parseLinker(stdout) {
-		var regex = /(.*):(\d+):\s(.*)\s(to|of)\s`(.*)'/g;
+		const regex = /(.*):(\d+):\s(.*)\s(to|of)\s`(.*)'/g;
 
-		var messages = [];
-		var match = null;
+		const messages = [];
+		let match = null;
+		/* eslint-disable-next-line */
 		while (match = regex.exec(stdout)) {
 			messages.push(new Message().fromLinker(match, stdout));
 		}
