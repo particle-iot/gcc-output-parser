@@ -1,8 +1,10 @@
 # gcc output parser library
 
-[![Build Status](https://travis-ci.org/spark/gcc-output-parser.svg?branch=master)](https://travis-ci.org/spark/gcc-output-parser)
+[![Build Status](https://circleci.com/gh/particle-iot/gcc-output-parser.svg?style=shield)](https://app.circleci.com/pipelines/github/particle-iot/gcc-output-parser)
 
 Library which helps annotate/highlight `gcc` output.
+
+[Installation](#installation) | [Usage](#usage)  |  [Releasing](#releasing)
 
 ## Installation
 
@@ -30,3 +32,7 @@ example output:
     code: 'void onCheer(const char *topic, const char *data);',
     adjustedColumn: 36 } ]
 ```
+
+## Releasing
+
+See the release process in the [RELEASE.md](RELEASE.md) file.
